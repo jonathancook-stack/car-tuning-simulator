@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Tuning Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="mainMenu" class="screen active">
+            <h1>🏎️ CAR TUNING SIMULATOR</h1>
+            <p>Build. Tune. Race. Dominate.</p>
+            <button onclick="startGame()" class="btn btn-primary">Start Game</button>
+            <button onclick="showGarage()" class="btn btn-secondary">View Garage</button>
+        </div>
+
+        <div id="gameScreen" class="screen">
+            <div class="hud">
+                <div class="hud-left">
+                    <div class="stat">Speed: <span id="speedDisplay">0</span> mph</div>
+                    <div class="stat">RPM: <span id="rpmDisplay">0</span></div>
+                    <div class="stat">HP: <span id="hpDisplay">200</span></div>
+                    <div class="stat">Money: $<span id="moneyDisplay">50000</span></div>
+                </div>
+                <div class="hud-center">
+                    <canvas id="gameCanvas" width="800" height="600"></canvas>
+                </div>
+                <div class="hud-right">
+                    <button onclick="showTuneMenu()" class="btn btn-small">Tune Engine</button>
+                    <button onclick="showEngineSwap()" class="btn btn-small">Engine Swap</button>
+                    <button onclick="showGarage()" class="btn btn-small">Garage</button>
+                    <button onclick="mainMenu()" class="btn btn-small">Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tuneMenu" class="screen">
+            <h2>Engine Tuning</h2>
+            <div class="tune-options">
+                <div class="tune-item">
+                    <h3>Turbocharger</h3>
+                    <p>+50 HP | Cost: $8,000</p>
+                    <button onclick="purchaseUpgrade('turbo', 50, 8000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="tune-item">
+                    <h3>Supercharger</h3>
+                    <p>+75 HP | Cost: $12,000</p>
+                    <button onclick="purchaseUpgrade('supercharger', 75, 12000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="tune-item">
+                    <h3>ECU Tune</h3>
+                    <p>+30 HP | Cost: $3,000</p>
+                    <button onclick="purchaseUpgrade('ecu', 30, 3000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="tune-item">
+                    <h3>Exhaust System</h3>
+                    <p>+25 HP | Cost: $2,500</p>
+                    <button onclick="purchaseUpgrade('exhaust', 25, 2500)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="tune-item">
+                    <h3>Intake Manifold</h3>
+                    <p>+20 HP | Cost: $1,800</p>
+                    <button onclick="purchaseUpgrade('intake', 20, 1800)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="tune-item">
+                    <h3>Nitrous Oxide</h3>
+                    <p>+100 HP (Temporary) | Cost: $5,000</p>
+                    <button onclick="purchaseUpgrade('nos', 100, 5000)" class="btn btn-primary">Install</button>
+                </div>
+            </div>
+            <button onclick="showGameScreen()" class="btn btn-secondary">Back to Driving</button>
+        </div>
+
+        <div id="engineSwapMenu" class="screen">
+            <h2>Engine Swap Shop</h2>
+            <div class="engine-options">
+                <div class="engine-item">
+                    <h3>4-Cylinder Stock Engine</h3>
+                    <p>Base: 200 HP | Cost: $5,000</p>
+                    <button onclick="swapEngine('4cyl', 200, 5000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="engine-item">
+                    <h3>6-Cylinder Performance</h3>
+                    <p>Base: 300 HP | Cost: $12,000</p>
+                    <button onclick="swapEngine('6cyl', 300, 12000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="engine-item">
+                    <h3>V8 Beast</h3>
+                    <p>Base: 450 HP | Cost: $25,000</p>
+                    <button onclick="swapEngine('v8', 450, 25000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="engine-item">
+                    <h3>Twin-Turbo V12</h3>
+                    <p>Base: 600 HP | Cost: $50,000</p>
+                    <button onclick="swapEngine('v12tt', 600, 50000)" class="btn btn-primary">Install</button>
+                </div>
+                <div class="engine-item">
+                    <h3>Legendary V16</h3>
+                    <p>Base: 800 HP | Cost: $100,000</p>
+                    <button onclick="swapEngine('v16', 800, 100000)" class="btn btn-primary">Install</button>
+                </div>
+            </div>
+            <button onclick="showGameScreen()" class="btn btn-secondary">Back to Driving</button>
+        </div>
+
+        <div id="garageScreen" class="screen">
+            <h2>Your Garage</h2>
+            <div id="carStats" class="car-stats">
+                <h3 id="carName">Current Car</h3>
+                <p>Engine: <span id="engineType">4-Cylinder</span></p>
+                <p>Horsepower: <span id="totalHP">200</span> HP</p>
+                <p>Top Speed: <span id="topSpeed">120</span> mph</p>
+                <p>Upgrades Installed:</p>
+                <ul id="upgradesList"></ul>
+            </div>
+            <button onclick="showGameScreen()" class="btn btn-secondary">Back to Driving</button>
+            <button onclick="mainMenu()" class="btn btn-secondary">Main Menu</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
